@@ -1,4 +1,44 @@
 *{
     overflow: hidden;
     box-sizing: border-box;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+/* header and footer */
+.logo{
+    text-decoration: none;
+    color: #ffff;
+    transition-duration: .3s;
+}
+.logo:hover{
+    background-blend-mode:hard-light;
+    color: rgb(255, 183, 0);  
+}
+.link{
+    text-decoration: none;
+    list-style: none;
+    color: #ffff;
+   
+}
+.items:hover,.para:hover{
+    color: rgb(255, 183, 0);
+}
+.triangle-up {
+	width: 0;
+	height: 0;
+	border-left: 15px solid transparent;
+	border-right: 15px solid transparent;
+	border-bottom: 30px solid #c8c8c8;
+}
+.fa-linkedin:hover,.fa-envelope:hover{
+    color: #0077b5 ;
+}
+.fa-github:hover{
+    filter: invert(90%);
+}
+.triangle-up:hover{
+    width: 0;
+	height: 0;
+	border-left: 15px solid transparent;
+	border-right: 15px solid transparent;
+	border-bottom: 30px solid #ffffff;
 }

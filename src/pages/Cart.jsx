@@ -30,7 +30,7 @@ function Cart() {
               <h5>Total Amount : $2500</h5>
               <hr />
               <div className="d-grid">
-                <div className="btn btn-success">CheckOut <span><i class="fa-solid fa-cart-shopping fa-bounce ms-2"></i></span></div>
+                <div className="btn btn-success">CheckOut <span><i className="fa-solid fa-cart-shopping fa-bounce ms-2"></i></span></div>
               </div>
             </div>
           </div>

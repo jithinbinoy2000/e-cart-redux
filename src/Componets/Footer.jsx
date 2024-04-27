@@ -6,6 +6,7 @@ function Footer() {
     useEffect(()=>{
         
     })
+    const style={height:"100px"}
   return (
     <div className='bg-body-tertiary text-light user-select-none mt-4'data-bs-theme="dark">
         <div className="container text-center">
@@ -26,8 +27,8 @@ function Footer() {
                 <div className="col-lg-4">Contact
                 <ul className='d-flex justify-content-evenly mt-2'> 
                     <li><a href='mailto:jithinbinoy2000@gmail.com' className='link'><i className="fa-regular fa-envelope fa-2x "></i> </a></li>
-                    <li><a href={"https://github.com/jithinbinoy2000"} className='link'><i className="fa-brands fa-github fa-2x"></i></a></li>
-                    <li><a href='https://www.linkedin.com/in/jithin-binoy2001/' className='link'><i className="fa-brands fa-linkedin fa-2x"></i></a>
+                    <li><a href={"https://github.com/jithinbinoy2000"} className='link'><i className="fa-brands fa-github fa-2x" style={style}></i></a></li>
+                    <li><a href='https://www.linkedin.com/in/jithin-binoy2001/' className='link'><i className="fa-brands fa-linkedin fa-2x" style={style}></i></a>
                     </li>
                     <li> <a href='https://vercel.com/jithinbinoy2000s-projects' className='link'><div className='triangle-up'></div></a></li>
                 </ul>

@@ -21,7 +21,6 @@ function App() {
         {/* uniqe identifier */}
         <Route path="/view/:id" element={<View/>}></Route>
         {/* default page when user enter wrong url */}
-        
         <Route path="/*" element={<Navigate to={"/"}/>}></Route>
       </Routes>
     <Footer/>

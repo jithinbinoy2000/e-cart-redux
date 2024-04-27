@@ -1,5 +1,5 @@
 *{
-    overflow: hidden;
+    overflow-x: hidden;
     box-sizing: border-box;
     font-family:Arial, Helvetica, sans-serif;
 }

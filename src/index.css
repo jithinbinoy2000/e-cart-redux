@@ -11,7 +11,7 @@
 }
 .logo:hover{
     background-blend-mode:hard-light;
-    color: rgb(255, 183, 0);  
+    color: rgb(255, 183, 0);
 }
 .link{
     text-decoration: none;
@@ -42,3 +42,13 @@
 	border-right: 15px solid transparent;
 	border-bottom: 30px solid #ffffff;
 }
+.toast-message {
+    background: #a321ee;
+    color: #000000;
+    font-size: 10px;
+    width: 25vw;
+    padding: 10px 10px;
+  }
+  .toast-message button{
+    color: rgb(255, 255, 255);
+  }

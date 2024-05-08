@@ -5,7 +5,10 @@ import {createSlice,createAsyncThunk} from "@reduxjs/toolkit";
 export const fetchProducts = createAsyncThunk('allProducts/fetchProducts',async()=>{
     // api call using axios
     const response = await axios.get("https://dummyjson.com/products")
+     //store data permemntely in localstorage
+     localStorage.setItem("products",JSON.stringify(response.data.products))
       return response.data.products
+     
 })
 // slices
 const productSlice = createSlice({

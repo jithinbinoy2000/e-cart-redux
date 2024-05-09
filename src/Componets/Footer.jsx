@@ -17,7 +17,7 @@ function Footer() {
                 </div>
             {/* links-------------------------------------------------------------------------------------------------------------------- */}
                 <div className="col-lg-2 col-sm-12">Links
-                <ul className='text-start ms-3 mt-2 ' >
+                <ul className=' mt-start mt-2' >
                    <Link to={"/"} className='link'> <li className='items'>Home</li></Link>
                     <Link to={"/cart"}className='link'><li className='items'>Cart</li></Link>
                     <Link to={"/wishlist"}className='link'><li className='items'>WishList</li></Link>

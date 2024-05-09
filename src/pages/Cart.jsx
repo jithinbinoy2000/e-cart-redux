@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Col, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { removefromCart } from '../Redux/slices/CartSlice'
@@ -10,6 +10,9 @@ function Cart() {
   const showdeletetoast=()=>{
     toast.error("deleted",{position:'bottom-right', className:'deletetoast'})
   }
+  useEffect(()=>{
+
+  },[])
   return (
     <div>
       <div className="container">
@@ -21,19 +24,21 @@ function Cart() {
                     <th>#</th>
                     <th>Product</th>
                     <th>Image</th>
-                    <th>Price</th>
+                    <th>Unit Price</th>
                     <th>Qtd</th>
-                    <th>Action</th>
+                    <th>Total Price</th>
+                    <th></th>
                 </tr>
              </thead>
              <tbody>
              {cart.map((item,index)=>( 
-                  <tr key={index}>
+                  <tr key={index+1}>
                     <td>{item.id}</td>
                     <td>{item.title}</td>
                     <td><img src={item.thumbnail} alt="product image" style={{width:"100px"}}/></td>
-                    <td>${item.price}</td>
-                    <td>{item.quandity}</td>
+                    <td className='text-center'>${item.price}</td>
+                    <td className='text-center'>{item.quandity}</td>
+                    <td className='text-center'>${item.totalPrice}</td>
                     <td><div onClick={()=>{dispatch(removefromCart(item));
                     showdeletetoast();
                     }} className="btn"><i className='fa-solid fa-trash fa-1x text-danger'></i></div></td>
@@ -44,7 +49,7 @@ function Cart() {
           <div className="col-lg-4 mt-5">
             <div className="rounded shadow d-fex flex-column p-4 ">
               <h5 >Total Product : {cart.length}</h5>
-              <h5>Total Amount : $ {cart.reduce((sum,item)=>sum+item.price,0)}</h5>
+              <h5>Total Amount : $ {cart.reduce((sum,item)=>sum+item.totalPrice,0)}</h5>
               <hr/>
               <div className="d-grid">
                 <div className="btn btn-success">CheckOut <span><i className="fa-solid fa-cart-shopping fa-bounce ms-2"></i></span></div>

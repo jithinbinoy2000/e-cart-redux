@@ -9,22 +9,18 @@ const CartSlice =createSlice({
            const test = state.find((item)=>item.id===action.payload.id)
         if(!test){
             //adding an new data as defulat --quandity
-            return [...state,{...action.payload,quandity:1}]
+             state.push({...action.payload,quandity:1,totalPrice:action.payload.price})
+            //return [...state,{...action.payload,quandity:1}]
         }
         else {
-            return state.map(item=>{
-                //find the item array
-                if(item.id===action.payload.id){
-                    //increament quandity value
-                    return{...item,quandity:item.quandity+1} 
-                    
-                }
-                else return {item}
-                    
-            })
+            
+                    const newState =state.filter((item)=>item.id!==test.id)
+                    test.quandity++
+                    test.totalPrice=test.quandity*test.price
+                state = ([...state,test])
+           
          }
         },
-
         removefromCart:(state,action)=>{
           const data=state.filter(item=>item.id!=action.payload.id)
           return data
@@ -34,6 +30,5 @@ const CartSlice =createSlice({
         }
     }
 })
-
 export const{addtoCart,removefromCart,emptyCart,lengthChanged}=CartSlice.actions
 export default CartSlice.reducer

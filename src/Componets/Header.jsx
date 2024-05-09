@@ -7,12 +7,19 @@ import { ToastContainer, toast } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css";
 
 function Header() {
-  const[count,setWishListCount]=useState(0)
+  const[count,setWishListCount]=useState(0)//wishlist count
+  const[cartCount,setCartCount]=useState(0)
   const {wishlist}=useSelector((state)=>state.WishlistSlice)
-  //get count of wishlist and update
+  const cart = useSelector((state)=>state.cartReducer)
+    //------------------get count of wishlist and update------
   useEffect(()=>{
-    setWishListCount(wishlist?wishlist.length:0)
-  },[wishlist]);
+    setWishListCount(wishlist?wishlist.length:0),
+    setCartCount(cart?cart.length:0)
+  },[wishlist,cart]);
+  //------------------get count of cart------------------------
+  // get store cart data
+
+  
   useEffect(()=>{
     if(count>0){
     const element=document.getElementById("elementToChange")
@@ -20,6 +27,7 @@ function Header() {
     toastShow()
     }
     else null
+  
   },[count])
 
    //toast
@@ -29,7 +37,7 @@ function Header() {
     className:'toast-message'})
    }
   return (
-    <div>
+    <div className='headerbar'>
         <Navbar expand="lg" className='bg-body-tertiary d-flex justify-content-between user-select-none' data-bs-theme="dark">
     <div className='text-light ms-3'>           
     <Link to={"/"} className='logo'>
@@ -44,7 +52,7 @@ function Header() {
         </Link>
         <Link to={"/cart"} className="btn btn-outline-light me-3 ">
        <i className='fa-solid fa-cart-shopping me-2 text-warning'></i> Cart
-       <Badge className='ms-2 badge' bg='warning'>5</Badge>
+       <Badge className='ms-2 badge' bg='warning'>{cartCount}</Badge>
         </Link>
         <ToastContainer/>
     </div>

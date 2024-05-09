@@ -1,11 +1,19 @@
 import React from 'react'
 import { Col, Row } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import { removefromCart } from '../Redux/slices/CartSlice'
+import { toast } from 'react-toastify'
 
 function Cart() {
+  const cart = useSelector(state=>state.cartReducer)
+  const dispatch = useDispatch();
+  const showdeletetoast=()=>{
+    toast.error("deleted",{position:'bottom-right', className:'deletetoast'})
+  }
   return (
     <div>
       <div className="container">
-        <Row className='mt-5'>
+        {cart.length>0?<Row className='mt-5'>
           <div className="col-lg-8 mt-5">
             <table className='table shadow rounded'>
              <thead>
@@ -14,31 +22,43 @@ function Cart() {
                     <th>Product</th>
                     <th>Image</th>
                     <th>Price</th>
+                    <th>Qtd</th>
                     <th>Action</th>
                 </tr>
              </thead>
-              <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Iphone</td>
-                    <td><img src="https://m.media-amazon.com/images/I/61uA2UVnYWL._AC_UY218_.jpg" alt="product image"/></td>
-                    <td>$2500</td>
-                    <td><div className="btn"><i className='fa-solid fa-trash fa-1x text-danger'></i></div></td>
+             <tbody>
+             {cart.map((item,index)=>( 
+                  <tr key={index}>
+                    <td>{item.id}</td>
+                    <td>{item.title}</td>
+                    <td><img src={item.thumbnail} alt="product image" style={{width:"100px"}}/></td>
+                    <td>${item.price}</td>
+                    <td>{item.quandity}</td>
+                    <td><div onClick={()=>{dispatch(removefromCart(item));
+                    showdeletetoast();
+                    }} className="btn"><i className='fa-solid fa-trash fa-1x text-danger'></i></div></td>
                   </tr>
-              </tbody>
+              ))}</tbody>
             </table>
           </div>
           <div className="col-lg-4 mt-5">
             <div className="rounded shadow d-fex flex-column p-4 ">
-              <h5 >Total Product : 1</h5>
-              <h5>Total Amount : $2500</h5>
+              <h5 >Total Product : {cart.length}</h5>
+              <h5>Total Amount : $ {cart.reduce((sum,item)=>sum+item.price,0)}</h5>
               <hr/>
               <div className="d-grid">
                 <div className="btn btn-success">CheckOut <span><i className="fa-solid fa-cart-shopping fa-bounce ms-2"></i></span></div>
               </div>
             </div>
           </div>
-        </Row>
+          
+        </Row>:
+        
+       <div className='mt-5 text-center'> <img src="https://media0.giphy.com/media/LOL2XB5O5slfFE4K3M/giphy.gif?cid=6c09b952e9km389rumzgizjky03cs4ogpyny1l5tmf92buus&ep=v1_internal_gif_by_id&rid=giphy.gif&ct=s" className='text-center'
+       style={{width:'20vw'}}/>
+       <div className="mt-2 text-warning">Empty Cart</div>
+       </div>
+        }
       </div>
     </div>
   )

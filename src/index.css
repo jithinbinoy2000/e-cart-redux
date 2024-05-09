@@ -43,12 +43,12 @@
 	border-bottom: 30px solid #ffffff;
 }
 .toast-message {
-    background: #a321ee;
+    background: #ffffff;
     color: #000000;
-    font-size: 10px;
-    width: 25vw;
+    /* font-size: 10px; */
+    /* width: 25vw; */
     padding: 10px 10px;
   }
-  .toast-message button{
-    color: rgb(255, 255, 255);
-  }
+.deletetoast{
+    color:#e74c3c;
+}

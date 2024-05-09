@@ -3,6 +3,9 @@ import { Spinner } from 'react-bootstrap';
 import {  useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom'
 import { addtowishlist } from '../Redux/slices/WishlistSlice';
+import { addtoCart } from '../Redux/slices/CartSlice';
+import { toast } from 'react-toastify';
+
 
 function View() {
   const dispach=useDispatch();
@@ -14,6 +17,11 @@ function View() {
    setProduct(products.find(product=>product.id==id))
   
   },[])
+  const showtoast =()=>{
+    toast.success("Updated Successfully",{
+      position:'bottom-right'
+    })
+  }
   return (
     <div > 
       <div className='container'>
@@ -33,9 +41,14 @@ function View() {
                 <p style={{textAlign:'justify'}}>Rating <span className='text-warning'>{product.rating} &#9733;</span></p>
               </div>
               <div className="d-flex justify-content-between">
-                <div onClick={()=>dispach(addtowishlist(product))}
+                <div onClick={()=>{dispach(addtowishlist(product))
+                
+                }}
                 className="btn btn-outline-danger "><i className='fa-solid fa-heart '></i> <span style={{fontSize:'15px'}} className='ms-2 fw-bold'>WishList</span></div>
-                <div className="btn btn-outline-success "><i className='fa-solid fa-cart-plus '></i> <span style={{fontSize:'15px'}} className='ms-2 fw-bold'>Cart &nbsp; &nbsp;</span></div>
+                <div onClick={()=>{dispach(addtoCart(product))
+                  showtoast()
+                }}
+                 className="btn btn-outline-success "><i className='fa-solid fa-cart-plus '></i> <span style={{fontSize:'15px'}} className='ms-2 fw-bold'>Cart &nbsp; &nbsp;</span></div>
               </div>
             </div>
           </div>

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import { fetchProducts } from '../Redux/slices/ProductSlice'
 import { addtowishlist } from '../Redux/slices/WishlistSlice'
 import { addtoCart} from '../Redux/slices/CartSlice'
-
+import { toast } from 'react-toastify'
 function Home() {
   //  dispatch actions to the Redux store. 
   const dispach = useDispatch();
@@ -27,10 +27,14 @@ const cartitem=useSelector((state)=>state.cartReducer)
   const handleMouseLeave=()=>{
     setHoveredIndex(null);
   }
-  //wishlist
-//  const handleCart=(product)=>{
-//   dispach(addtoCart(product))
-//  }
+  //cart toast
+ const showtoast=()=>{
+    toast.success("Cart updated",{
+      position:'bottom-right',
+      className:"cartToast"
+    })
+    
+  }
   return (
 
     <div className='user-select-none'>
@@ -83,8 +87,10 @@ const cartitem=useSelector((state)=>state.cartReducer)
           
           className='btn btn-light' style={{backgroundColor:"white"}}><i className='fa-solid fa-heart  text-danger'></i></Button>
           {/* cart btn */}
-          <Button onClick={()=>{dispach(addtoCart(product));
-         }} className='btn btn-light' style={{backgroundColor:"white"}}> <i className='fa-solid fa-cart-shopping text-warning'></i></Button>
+          <Button onClick={()=>{dispach(addtoCart(product))
+                              showtoast()
+          }}
+           className='btn btn-light' style={{backgroundColor:"white"}}> <i className='fa-solid fa-cart-shopping text-warning'></i></Button>
             </div>
           </Card.Body>
          </Card>

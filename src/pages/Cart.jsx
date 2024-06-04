@@ -3,16 +3,23 @@ import { Col, Row } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { removefromCart } from '../Redux/slices/CartSlice'
 import { toast } from 'react-toastify'
+import { useNavigate } from 'react-router-dom'
 
 function Cart() {
   const cart = useSelector(state=>state.cartReducer)
   const dispatch = useDispatch();
+  const nav=useNavigate()
   const showdeletetoast=()=>{
     toast.error("deleted",{position:'bottom-right', className:'deletetoast'})
+   
   }
   useEffect(()=>{
 
   },[])
+  const handleCheckOut=()=>{
+    alert('Order has successfully Placed ... ')
+    nav('/')
+  }
   return (
     <div>
       <div className="container">
@@ -52,7 +59,7 @@ function Cart() {
               <h5>Total Amount : $ {cart.reduce((sum,item)=>sum+item.totalPrice,0)}</h5>
               <hr/>
               <div className="d-grid">
-                <div className="btn btn-success">CheckOut <span><i className="fa-solid fa-cart-shopping fa-bounce ms-2"></i></span></div>
+                <div onClick={()=>handleCheckOut()} className="btn btn-success">CheckOut <span><i className="fa-solid fa-cart-shopping fa-bounce ms-2"></i></span></div>
               </div>
             </div>
           </div>

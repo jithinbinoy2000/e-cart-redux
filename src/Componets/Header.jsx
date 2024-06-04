@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Badge, Navbar } from 'react-bootstrap'
-import { act } from 'react-dom/test-utils';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify'
 import "react-toastify/dist/ReactToastify.css";
+import { productSearch } from '../Redux/slices/ProductSlice';
+
 
 function Header() {
   const[count,setWishListCount]=useState(0)//wishlist count
@@ -36,6 +38,7 @@ function Header() {
     {position:'bottom-right',
     className:'toast-message'})
    }
+   const dispatch = useDispatch()
   return (
     <div className='headerbar'>
         <Navbar expand="lg" className='bg-body-tertiary d-flex justify-content-between user-select-none' data-bs-theme="dark">
@@ -46,6 +49,12 @@ function Header() {
     </Link>
     </div>
     <div className='text-light me-3 '> 
+       {/* ------search box ------------------ */}
+       <Link className="btn">
+        <input type="text"  className='form-control' placeholder='Search Products' 
+        onChange={(e)=>dispatch(productSearch(e.target.value.toLowerCase()))}/>
+        </Link>
+        {/* --------------------------------- */}
         <Link to={"/wishlist"} className="btn btn-outline-light me-3">
         <i className='fa-solid fa-heart me-2 text-danger'></i>WishList
         <Badge className='ms-2 badge' bg='danger' id='elementToChange'>{count}</Badge>
